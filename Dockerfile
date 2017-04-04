@@ -10,4 +10,4 @@ ENV VARNISHD_PARAMS -p default_ttl=3600 -p default_grace=3600
 
 EXPOSE 80
 
-CMD /bin/sh
+CMD ["/bin/sh"]
