@@ -10,4 +10,4 @@ ENV VARNISHD_PARAMS -p default_ttl=3600 -p default_grace=3600
 
 EXPOSE 80
 
-CMD varnishd -F -u varnish -f $VCL_CONFIG -s malloc,$CACHE_SIZE $VARNISHD_PARAMS"
+CMD /bin/sh
