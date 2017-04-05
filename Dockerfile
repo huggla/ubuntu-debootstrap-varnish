@@ -12,4 +12,4 @@ VOLUME /varnishconf
 EXPOSE 80 6082
 
 ENTRYPOINT ["/bin/sh", "-c"]
-CMD ['ln -sf /varnishconf/varnish /etc/default/varnish; ln -sf /varnishconf/default.vcl /etc/varnish/default.vcl; service varnish restart && /bin/sh']
+CMD ["'ln -sf /varnishconf/varnish /etc/default/varnish; ln -sf /varnishconf/default.vcl /etc/varnish/default.vcl; service varnish restart && /bin/sh'"]
