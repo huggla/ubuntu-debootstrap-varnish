@@ -1,4 +1,4 @@
-FROM blitznote/debootstrap-amd64:16.04
+FROM blitznote/debootstrap-amd64:17.04
 
 RUN curl -s https://packagecloud.io/install/repositories/varnishcache/varnish5/script.deb.sh | bash \
  && apt-get install -qy varnish \
