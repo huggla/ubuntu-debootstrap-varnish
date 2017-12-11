@@ -3,7 +3,7 @@ FROM alpine:3.7
 COPY ./bin/entry.sh /usr/local/bin/
 
 RUN apk --no-cache add varnish \
- && adduser -D -h /varnishconf varnish \
+ && mkdir /varnishconf \
  && cp /etc/conf.d/varnishd /varnishconf/varnishd \
  && cp /etc/varnish/default.vcl /varnishconf/default.vcl \
  && ln -fs /varnishconf/varnishd /etc/conf.d/varnishd \
