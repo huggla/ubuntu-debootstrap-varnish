@@ -1,16 +1,15 @@
-FROM blitznote/debootstrap-amd64:16.04
+FROM alpine:3.7
 
 COPY ./bin/entry.sh /usr/local/bin/
 
-RUN curl -s https://packagecloud.io/install/repositories/varnishcache/varnish5/script.deb.sh | bash \
- && apt-get install -qy varnish \
- && rm -rf /var/lib/apt/lists/* \
- && mkdir /varnishconf \
- && cp /etc/default/varnish /varnishconf/varnish \
+RUN apk --no-cache add varnish \
+ && adduser -D -h /varnishconf varnish \
+ && cp /etc/conf.d/varnishd /varnishconf/varnishd \
  && cp /etc/varnish/default.vcl /varnishconf/default.vcl \
+ && ln -fs /varnishconf/varnishd /etc/conf.d/varnishd \
+ && ln -fs /varnishconf/default.vcl /etc/varnish/default.vcl \
+ && chown -R varnish:varnish /varnishconf \
  && chmod ugo+x /usr/local/bin/entry.sh
-
-WORKDIR /varnishconf
 
 VOLUME /varnishconf
 
