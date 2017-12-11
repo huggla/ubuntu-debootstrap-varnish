@@ -14,10 +14,9 @@ ENV JAIL="unix,user=varnish" \
     ADDITIONAL_OPTS="" 
 
 COPY ./bin/entry.sh /usr/local/bin/entry.sh
+COPY ./varnish-5.0-configuration-templates/default.vcl /varnishconf/default.vcl
 
 RUN apk --no-cache add varnish \
- && mkdir /varnishconf \
- && cp /etc/varnish/default.vcl /varnishconf/default.vcl \
  && chown -R varnish:varnish /varnishconf \
  && chmod ugo+x /usr/local/bin/entry.sh
 
