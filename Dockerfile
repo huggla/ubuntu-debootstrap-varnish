@@ -2,7 +2,8 @@ FROM alpine:3.7
 
 ENV JAIL="none" \
     PID_FILE="/run/varnishd.pid" \
-    VCL_FILE="/varnishconf/default.vcl" \
+    VARNISH_CONFIG_DIR="/varnishconf" \
+    VCL_FILE="$VARNISH_CONFIG_DIR/default.vcl" \
     READ_ONLY_PARAMS="cc_command,vcc_allow_inline_c,vmod_path" \
     LISTEN_ADDRESS="" \
     LISTEN_PORT="6081" \
@@ -13,16 +14,16 @@ ENV JAIL="none" \
     ADDITIONAL_OPTS="" 
 
 COPY ./bin/entry.sh /usr/local/bin/entry.sh
-COPY ./varnish-5.0-configuration-templates/default.vcl /varnishconf/default.vcl
+COPY ./varnish-5.0-configuration-templates/default.vcl $VCL_FILE
 
 RUN apk --no-cache add varnish \
  && touch $PID_FILE \
- && chown -R varnish:varnish /varnishconf $PID_FILE \
+ && chown -R varnish:varnish $VARNISH_CONFIG_DIR $PID_FILE \
  && chmod ugo+x /usr/local/bin/entry.sh
 
 USER varnish
 
-VOLUME /varnishconf
+VOLUME $VARNISH_CONFIG_DIR
 
 EXPOSE $LISTEN_PORT $MANAGEMENT_PORT
 
