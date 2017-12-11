@@ -1,2 +1,3 @@
 #!/bin/sh
 
+varnishd -j ${JAIL} -P ${PID_FILE} -f ${VCL_FILE} -r ${READ_ONLY_PARAMS} -a ${LISTEN} -T ${MANAGEMENT_INTERFACE} -s ${STORAGE} -t ${DEFAULT_TTL} -S ${SECRET_FILE} -F ${ADDITIONAL_OPTS}
