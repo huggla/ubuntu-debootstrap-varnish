@@ -16,7 +16,8 @@ COPY ./bin/entry.sh /usr/local/bin/entry.sh
 COPY ./varnish-5.0-configuration-templates/default.vcl /varnishconf/default.vcl
 
 RUN apk --no-cache add varnish \
- && chown -R varnish:varnish /varnishconf \
+ && touch $PID_FILE \
+ && chown -R varnish:varnish /varnishconf $PID_FILE \
  && chmod ugo+x /usr/local/bin/entry.sh
 
 USER varnish
