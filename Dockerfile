@@ -3,7 +3,6 @@ FROM alpine:3.7
 ENV JAIL="none" \
     PID_FILE="/run/varnishd.pid" \
     VARNISH_CONFIG_DIR="/varnishconf" \
-    VCL_FILE="$VARNISH_CONFIG_DIR/default.vcl" \
     READ_ONLY_PARAMS="cc_command,vcc_allow_inline_c,vmod_path" \
     LISTEN_ADDRESS="" \
     LISTEN_PORT="6081" \
