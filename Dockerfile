@@ -14,17 +14,17 @@ ENV JAIL="none" \
     ADDITIONAL_OPTS="" 
 
 COPY ./bin/entry.sh /usr/local/bin/entry.sh
-COPY ./varnish-5.0-configuration-templates/default.vcl $VCL_FILE
+COPY ./varnish-5.0-configuration-templates/default.vcl "$VARNISH_CONFIG_DIR/default.vcl"
 
 RUN apk --no-cache add varnish \
- && mkdir -p "$(dirname "$PID_FILE")" \
- && touch $PID_FILE \
- && chown varnish:varnish $PID_FILE \
+ && mkdir -p "$(dirname '"$PID_FILE"')" \
+ && touch "$PID_FILE" \
+ && chown varnish:varnish "$PID_FILE" \
  && chmod ugo+x /usr/local/bin/entry.sh
 
 USER varnish
 
-VOLUME $VARNISH_CONFIG_DIR
+VOLUME "$VARNISH_CONFIG_DIR"
 
 EXPOSE $LISTEN_PORT $MANAGEMENT_PORT
 
