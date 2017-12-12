@@ -1,3 +1,4 @@
 #!/bin/sh
-
-varnishd -j ${JAIL} -P "${PID_FILE}" -f "${VARNISH_CONFIG_DIR}/default.vcl" -r ${READ_ONLY_PARAMS} -a ${LISTEN_ADDRESS}:${LISTEN_PORT} -T ${MANAGEMENT_ADDRESS}:${MANAGEMENT_PORT} -s ${STORAGE} -t ${DEFAULT_TTL} -F ${ADDITIONAL_OPTS}
+ln -sf /varnishconf/varnish /etc/default/varnish
+ln -sf /varnishconf/default.vcl /etc/varnish/default.vcl
+service varnish restart && /bin/sh
