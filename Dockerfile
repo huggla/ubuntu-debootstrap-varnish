@@ -1,4 +1,4 @@
-FROM blitznote/debootstrap-amd64:16.04
+FROM blitznote/debootstrap-amd64:18.04
 
 COPY ./bin/entry.sh /usr/local/bin/entry.sh
 COPY ./varnish-5.0-configuration-templates/default.vcl "/varnishconf/default.vcl"
